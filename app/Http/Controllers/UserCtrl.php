@@ -31,7 +31,6 @@ class UserCtrl extends Controller
       {
         $user = DB::table('manage_users')->where('id',$request->input('id'))->first();
         return view('admin.content.edit_user')->with('user',$user);
-
       }
 
       if($request->input('action') == 'delete')
@@ -41,7 +40,6 @@ class UserCtrl extends Controller
           return redirect('/admin/user/user-list')->with('success','User successfully Deleted');
         else
           return redirect('/admin/user/user-list')->with('success','Internal Server Error Occured');
-
       }
 
       if($request->input('action') == 'block')
@@ -225,11 +223,8 @@ class UserCtrl extends Controller
           $data = $request->all();
           unset($data['_token']);
           unset($data['action']);
-
           $report = DB::table('user_reports')->insertGetId($data);
-
           $flag = DB::table('manage_users')->where('id',$data['manage_users_id'])->update(['status'=>'0']);
-
           return response()->json($flag);
         }
 
@@ -238,7 +233,6 @@ class UserCtrl extends Controller
           $data = $request->all();
           unset($data['_token']);
           unset($data['action']);
-
           $flags = DB::table('user_connections')->insertGetId($data);
           return response()->json($flags);
         }
@@ -248,7 +242,6 @@ class UserCtrl extends Controller
           $data = $request->all();
           unset($data['_token']);
           unset($data['action']);
-
           $flags = DB::table('user_connections')->insertGetId($data);
           return response()->json($flags);
         }
@@ -258,7 +251,6 @@ class UserCtrl extends Controller
           $data = $request->all();
           unset($data['_token']);
           unset($data['action']);
-
           $flags = DB::table('user_connections')->insertGetId($data);
           return response()->json($flags);
         }
