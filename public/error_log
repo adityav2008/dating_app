@@ -1,0 +1,18 @@
+[14-Apr-2017 05:46:28 UTC] PHP Parse error:  syntax error, unexpected '$request' (T_VARIABLE) in /home/neuroz51/public_html/dating/app/Http/Controllers/SearchInController.php on line 56
+[14-Apr-2017 11:24:22 UTC] PHP Fatal error:  Class 'Form' not found in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 487
+[14-Apr-2017 11:24:27 UTC] PHP Fatal error:  Class 'Form' not found in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 487
+[14-Apr-2017 11:45:11 UTC] PHP Fatal error:  Class 'Illuminate\Html\HtmlServiceProvider' not found in /home/neuroz51/public_html/dating/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 208
+[14-Apr-2017 11:46:08 UTC] PHP Fatal error:  Class 'Illuminate\Html\HtmlServiceProvider' not found in /home/neuroz51/public_html/dating/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 208
+[14-Apr-2017 11:46:10 UTC] PHP Fatal error:  Class 'Illuminate\Html\HtmlServiceProvider' not found in /home/neuroz51/public_html/dating/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 208
+[14-Apr-2017 11:46:12 UTC] PHP Fatal error:  Class 'Illuminate\Html\HtmlServiceProvider' not found in /home/neuroz51/public_html/dating/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 208
+[14-Apr-2017 11:46:15 UTC] PHP Fatal error:  Class 'Illuminate\Html\HtmlServiceProvider' not found in /home/neuroz51/public_html/dating/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 208
+[14-Apr-2017 11:46:19 UTC] PHP Fatal error:  Class 'Illuminate\Html\HtmlServiceProvider' not found in /home/neuroz51/public_html/dating/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 208
+[14-Apr-2017 12:03:01 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 796
+[14-Apr-2017 12:03:05 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 796
+[14-Apr-2017 12:33:04 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 791
+[14-Apr-2017 12:59:08 UTC] PHP Fatal error:  Call to a member function lists() on string in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 564
+[14-Apr-2017 13:11:12 UTC] PHP Fatal error:  Call to undefined method stdClass::input() in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 563
+[14-Apr-2017 13:18:27 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 562
+[14-Apr-2017 13:22:27 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 562
+[14-Apr-2017 13:22:59 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 562
+[14-Apr-2017 13:23:02 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/neuroz51/public_html/dating/storage/framework/views/1cf52e6c1e6e61000b2dd2ad3f4bc9cbc8bd6c28.php on line 562
