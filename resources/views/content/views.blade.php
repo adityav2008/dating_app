@@ -16,6 +16,7 @@
 
 			<div class="col-lg-9">
 
+
 				<div class="heading-sec1">
 					<div class="grid-view">
 						<div class="grid-list pull-left">
@@ -25,6 +26,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</div>
+
 				<div class="connections-right">
 					<div class="tab-slider">
 						<ul class="bxslider">
@@ -34,21 +36,28 @@
 										<div class="left-img pull-left">
 											<img src="{{Request::root()}}/assets/frontend/img/profile-pic-boy.jpg" alt="" />
 										</div>
-										<div class="right-content pull-right">
+										@foreach($result as $values)
+										
+										<div class="right-content pull-right" id="{{ $values->id }}">
 											<div class="green-btn"><i aria-hidden="true" class="fa fa-circle"></i> Recently Online</div>
-											<h5>john doe</h5>
+											<input type="hidden" id="viewer" value="{{ $values->id }}">
+											<h5>{{ $values->name }}</h5>
 											<p>Viewed you: 1 day ago</p>
-											<a href="#" class="grey-btn">View Profile</a>
+											<a href="{{url('/profile-about?id='.$values->id)}}" class="grey-btn" id="view">View Profile</a>
 											<a href="#" class="report">Delete - Report/Block</a>
 										</div>
 										<div class="clearfix"></div>
+										
 									</div>
 								</div>
 							</li>
 						</ul>
 						<div class="outside">
-							<p><span id="slider-prev"></span> <span id="slider-next"></span></p>
+							@endforeach
+							<p>{{ $result->appends(['id'=> $values->id])->links() }}</p>
+							
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -71,6 +80,8 @@ $(document).ready(function(){
 		nextText: 'Next',
 		prevText: 'Prev'
 	});
+
+
 });
 </script>>
 @stop

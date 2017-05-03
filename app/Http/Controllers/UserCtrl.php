@@ -199,6 +199,8 @@ class UserCtrl extends Controller
             $values = DB::table('manage_users')->where('email',$data['email'])->first(['id']);
             $user_id = $values->id;
             Session::put('id', $user_id);
+			//update last seen and online status
+            $flag = DB::table('manage_users')->where('id',$user_id)->update(['last_seen'=> date('Y-m-d h:i:s'),'online_status' => 1]);
             return Redirect::to('profile?id='.$user_id);
         
         }
@@ -289,6 +291,9 @@ class UserCtrl extends Controller
 
     public function getSignOut() {
 
+	 //update last seen and online status
+    $flag = DB::table('manage_users')->where('id',Session::get('id'))->update(['last_seen'=> date('Y-m-d h:i:s'),'online_status' => 0]);
+	
     Auth::logout();
     Session::flush();
     return Redirect::to('/');
@@ -358,6 +363,33 @@ class UserCtrl extends Controller
           $flags = DB::table('user_connections')->insertGetId($data);
           return response()->json($flags);
         }
+      }
+    }
+	
+	public function getOnline(Request $request){
+
+      if($request->isMethod('get'))
+      {
+        $result = DB::table('manage_users')
+                      ->whereNotIn('id',array(session::get('id')))
+                      ->paginate(1);
+
+        return view('content.views')->with([
+            'result'=>$result
+          ]);
+      }
+    }
+
+    public function getViews(Request $request){
+
+      if($request->isMethod('get'))
+      {
+        return view('content.views');
+      }
+
+      if($request->isMethod('post'))
+      {
+      //
       }
     }
 

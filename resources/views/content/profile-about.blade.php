@@ -328,6 +328,36 @@
 	//create new task / update existing task
 	$(document).ready(function(){
 
+		var viewer = "{{ $_GET['id']}}";
+		var main_users = "{{ Session::get('id') }}";
+						
+		// Returns successful data submission message when the entered information is stored in database.
+
+		if(viewer =='')
+		{
+		  alert("Please reload page again");
+		}
+		else
+		{
+		// AJAX Code To Submit Form.
+			 $.ajax({
+                type:'post',
+                url:"views",
+                dataType:'json',
+                data:{ 
+                		viewer_users_id: viewer,
+                		manage_users_id : main_users,
+                	  	action : 'viewer',
+                	  	_token:'{{csrf_token()}}'
+                	 },
+                success: function(result){
+                	alert(result);
+                }
+            });	
+		}
+
+		
+
 		//block or report about user
 		$("#report").click(function(){
 			var reason = $("#interested").val();
@@ -546,7 +576,10 @@
 			return false;
 		});
 
-
+		//insert profile viewer id 
+		
+		return false;	
+		
 	});
 	
 

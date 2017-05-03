@@ -45,13 +45,13 @@ Route::get('/profile-search',function(){
   return view('content.profile-search');
 });
 
-Route::get('/views',function(){
-  return view('content.views');
-});
+// Route::get('/views',function(){
+//   return view('content.views');
+// });
 
-Route::get('/online-now',function(){
-  return view('content.views');
-});
+// Route::get('/online-now',function(){
+//   return view('content.views');
+// });
 
 
 Route::get('/about',function(){
@@ -62,6 +62,10 @@ Route::get('/about',function(){
 Route::auth();
 
 Route::post('/index', 'UserCtrl@doSignUp');
+
+Route::any('/online-now', 'UserCtrl@getOnline');
+
+Route::any('/views', 'UserCtrl@getViews');
 
 Route::any('/search-edit', 'SearchInController@doSearchIn');
 

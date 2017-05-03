@@ -63,6 +63,19 @@ class SearchInController extends Controller
           ]);
     		
     	}
+		if($request->isMethod('post'))
+		{
+			if($request['action'] == 'viewer')
+			{
+
+			  $data = $request->all();
+			  unset($data['_token']);
+			  unset($data['action']);
+			 
+			  $flags = DB::table('view_profiles')->insertGetId($data);
+			  return response()->json($flags);
+			}
+		}
     }
 
  }   
