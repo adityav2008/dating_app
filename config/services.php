@@ -38,7 +38,7 @@ return [
     'facebook' =>[
                     'client_id' => '1827107707614429',
                     'client_secret' => 'b32263287f1d82e12faac188fddfd06e',
-                'redirect' =>'http://localhost/dating/public/auth/facebook/callback',
+                'redirect' =>'http://www.neurons-it.in/dating/public/auth/facebook/callback',
                 ],
 
     'twitter' => [

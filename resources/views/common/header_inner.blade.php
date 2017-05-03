@@ -47,6 +47,7 @@
 					</div>
 					<?php
 				    $values = DB::table('manage_users')->where('id',array(Session::get('id')))->first();
+				    //$values = DB::table('manage_users')->where('id',$_GET['id'])->first();
 				    ?>
 					<div class="dropdown pull-right">
 

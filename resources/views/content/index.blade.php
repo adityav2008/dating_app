@@ -10,9 +10,9 @@
 						<div class="col-lg-4 col-md-4 banner-form">
 							<div class="sign-up">
 								<ul>
-									<li><a href="#"><img src="{{Request::root()}}/assets/frontend/img/sign-facebook.png" alt="" /></a></li>
-									<li><a href="#"><img src="{{Request::root()}}/assets/frontend/img/sign-tiwtter.png" alt="" /></a></li>
-									<li><a href="#"><img src="{{Request::root()}}/assets/frontend/img/sign-google-plus.png" alt="" /></a></li>
+									<li><a href="{{Request::root()}}/auth/facebook"><img src="{{Request::root()}}/assets/frontend/img/sign-facebook.png" alt="" /></a></li>
+									<li><a href="{{Request::root()}}/auth/twitter"><img src="{{Request::root()}}/assets/frontend/img/sign-tiwtter.png" alt="" /></a></li>
+									<li><a href="{{Request::root()}}/auth/google"><img src="{{Request::root()}}/assets/frontend/img/sign-google-plus.png" alt="" /></a></li>
 								</ul>
 							</div>
 						<!-- Prashant kumar 12 Apr 2017 -->

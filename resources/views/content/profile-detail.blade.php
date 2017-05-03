@@ -44,7 +44,7 @@
 				<?php
 				
 			    $result = DB::table('manage_users')
-			    				->whereNotIn('id',array($_GET['id']))
+			    				->whereNotIn('id',array(Session::get('id')))
 			    				->where('status',1)
 			    				->paginate(1);
                  
@@ -135,29 +135,23 @@
 						  </div>
 						</div>
 						<div class="three-btn" id="{{ $values->id }}">
-						<?php
-						// get added, winked and gift sent to other profile
-						$added = DB::table('user_connections')
-			    				->where('manage_users_id',$_GET['id'])
-			    				->get();
-						 ?>
-					     
-						 @if($added[0]->added_user_id == $values->id )
-							<a href="#" class="grey-btn add" style="background: green;color: whitesmoke;">
-								 Addded
+					    
+						 @if(count($added) != 0)
+							<a href="#" class="grey-btn add" id="add" style="background: green;color: whitesmoke;">
+								 Added
 							</a>
-						@else
+						 @else
 							<a href="#" class="grey-btn add">
-								<i class="fa fa-plus-circle" aria-hidden="true"></i>
+								<i class="fa fa-plus-circle" id="add" aria-hidden="true"></i>
 								 Add
 							</a>
-						@endif
+						 @endif
 
-						@if($added[0]->wink_user_id == $values->id )
+						 @if(count($winked) != 0)
 							<a href="#" class="grey-btn wink" id="wink" style="background: orange;color: whitesmoke;">
 								 Winked
 							</a>
-						@else
+						 @else
 							<a href="#" class="grey-btn wink" id="wink">
 								 Wink
 							</a>
@@ -373,12 +367,12 @@
 					</ul>
 				</div>
 				</div>
+
 				@endforeach
+
 				<div class="paginate">
-					{{ $result->appends(['id' => $_GET['id']])->links() }}
+					{{ $result->appends(['id' => $result[0]->id ])->links() }}
 				</div>
-				
-				
 			</div>
 		</div>
 	</div>
@@ -446,9 +440,9 @@
 		});
 
 		// add user to connections 
-		$(".grey-btn").click(function(){
+		$("#add").click(function(){
 			var user_ids = $('#hidden_id').val();
-			var main_users = "{{ $_GET['id'] }}";
+			var main_users = "{{ Session::get('id') }}";
 			// Returns successful data submission message when the entered information is stored in database.
 			if(user_ids == '' || main_users == '')
 			{
@@ -501,7 +495,7 @@
 		// wink other users 
 		$("#wink").click(function(){
 			var user_ids = $('#hidden_id').val();
-			var main_users = "{{ $_GET['id'] }}";
+			var main_users = "{{ Session::get('id') }}";
 			// Returns successful data submission message when the entered information is stored in database.
 			if(user_ids == '' || main_users == '')
 			{
@@ -554,7 +548,7 @@
 		// send messege to others
 		$("#send").click(function(){
 			var user_idss = $('#hidden_id').val();
-			var send_by = "{{ $_GET['id'] }}";
+			var send_by = "{{Session::get('id')}}";
 			var msg = $('#msg').val();
 			// Returns successful data submission message when the entered information is stored in database.
 			if(user_idss == '' || send_by == '' || msg == '' )

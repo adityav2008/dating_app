@@ -89,11 +89,11 @@
 								
 										<li>
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Jasmine lee" />
+												<input type="text" id="user_name" class="form-control" placeholder="Jasmine lee" />
 											</div>
 										</li>
 										<li>
-											<input type="submit" name="">
+											<button id="name" class="btn2">Save</button>
 										</li>
 									</ul>
 								</div> 
@@ -111,11 +111,11 @@
 									<ul class="dropdown-menu">
 										<li>
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Jasmine lee" />
+												<input type="date" id="user_dob" class="form-control" placeholder="Jasmine lee" />
 											</div>
 										</li>
 										<li>
-											<button class="btn2">Save</button>
+											<button class="btn2" id="dob">Save</button>
 										</li>
 									</ul>
 								</div> 
@@ -133,11 +133,11 @@
 									<ul class="dropdown-menu">
 										<li>
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Jasmine lee" />
+												<input type="text" class="form-control" id="user_location" placeholder="Jasmine lee" />
 											</div>
 										</li>
 										<li>
-											<button class="btn2">Save</button>
+											<button id="location" class="btn2">Save</button>
 										</li>
 									</ul>
 								</div> 
@@ -568,9 +568,180 @@ $(document).ready(function(){
 
 	});
 
+	//update name
+		$("#name").click(function(){
+			var name = $("#user_name").val();
+			var main_users = "{{ Session::get('id') }}";
+			// Returns successful data submission message when the entered information is stored in database.
+
+			if(name =='')
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile",
+                    dataType:'json',
+                    data:{ 
+                    		user_name: name,
+                    		manage_users_id : main_users,
+                    	  	action : 'update_name',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+							$('#myModal').modal('hide');
+							location.reload();
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'Name updated !',
+							      'success'
+							    );
+							$('.close').click();
+							location.reload();
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		})
+
+		//update age
+		$("#dob").click(function(){
+			var age = $("#user_dob").val();
+			var main_users = "{{ Session::get('id') }}";
+			// Returns successful data submission message when the entered information is stored in database.
+
+			if(age =='')
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile",
+                    dataType:'json',
+                    data:{ 
+                    		dob : age,
+                    		manage_users_id : main_users,
+                    	  	action : 'update_dob',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+							$('#myModal').modal('hide');
+							location.reload();
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'Age updated !',
+							      'success'
+							    );
+							$('.close').click();
+							location.reload();
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		})
+
+		//update location
+		$("#location").click(function(){
+			var user_location = $("#user_location").val();
+			var main_users = "{{ Session::get('id') }}";
+			// Returns successful data submission message when the entered information is stored in database.
+
+			if(user_location =='')
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile",
+                    dataType:'json',
+                    data:{ 
+                    		location : user_location,
+                    		manage_users_id : main_users,
+                    	  	action : 'update_location',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+							$('#myModal').modal('hide');
+							location.reload();
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'location updated !',
+							      'success'
+							    );
+							$('.close').click();
+							location.reload();
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		})
 });
 
 </script>
-
+<script>
+    $(function(){
+         // Find any date inputs and override their functionality
+         $('input[type="date"]').datepicker({
+                  dateFormat : 'yy-mm-dd'
+                });
+    });
+</script>
 @stop
 

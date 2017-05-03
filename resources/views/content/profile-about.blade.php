@@ -68,6 +68,7 @@
 						        <h4 class="modal-title" style="text-align: center">Why are you reporting this?</h4>
 						      </div>
 							      <div class="modal-body">
+							      <input type="hidden" id="hidden_id" name="id" value="{{ $values->id }}">
 								      <select id="interested" name="reason" class="reason js-report-select">
 									      <option selected="selected" value="0">Not Interested</option>
 									      <option value="1">Under 18 Years Old</option>
@@ -94,9 +95,29 @@
 
 						  </div>
 						</div>
-						<div class="three-btn">
-							<a href="#" class="grey-btn"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</a>
-							<a href="#" class="grey-btn">Wink</a>
+						<div class="three-btn" id="{{ $values->id }}">
+					    <?php $added ?>
+						 @if(count($added) != 0)
+							<a href="#" class="grey-btn" id="add" style="background: green;color: whitesmoke;">
+								 Added
+							</a>
+						 @else
+							<a href="#" class="grey-btn add" id="add">
+								<i class="fa fa-plus-circle" aria-hidden="true"></i>
+								 Add
+							</a>
+						 @endif
+
+						 @if(count($winked) != 0)
+							<a href="#" class="grey-btn" id="wink" style="background: orange;color: whitesmoke;">
+								 Winked
+							</a>
+						 @else
+							<a href="#" class="grey-btn" id="wink">
+								 Wink
+							</a>
+						@endif
+							
 							<a href="#" class="btn2"><i class="fa fa-gift" aria-hidden="true"></i> Send Gift</a>
 						</div>
 						<textarea placeholder="Send her a message..."></textarea>
@@ -303,6 +324,235 @@
 		</div>
 	</div>
 </section>
+<script type="text/javascript">
+	//create new task / update existing task
+	$(document).ready(function(){
+
+		//block or report about user
+		$("#report").click(function(){
+			var reason = $("#interested").val();
+			var info = $("#additional").val();
+			var user_id = $('#hidden_id').val();
+			var true_users = "{{ Session::get('id') }}";
+
+			// Returns successful data submission message when the entered information is stored in database.
+
+			if(reason ==''|| info =='')
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile-detail",
+                    dataType:'json',
+                    data:{ 
+                    		manage_users_id : user_id,
+                    	  	reason_id:reason,
+                    	  	report_by_user_id : true_users,
+                    	  	additional_info:info,
+                    	  	action : 'block',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+							$('#myModal').modal('hide');
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'Profile Blocked ! You will never seen this profile again',
+							      'success'
+							    );
+							$('.close').click();
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		});
+
+		// add user to connections 
+		$("#add").click(function(){
+			var user_ids = $('#hidden_id').val();
+			var main_users = "{{ Session::get('id') }}";
+			// Returns successful data submission message when the entered information is stored in database.
+			if(user_ids == '' || main_users == '')
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile-detail",
+                    dataType:'json',
+                    data:{ 
+
+                    		added_user_id : user_ids,
+                    		manage_users_id : main_users,
+                    	  	action : 'add',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'Profile Added to your connections',
+							      'success'
+							    );
+							$(".grey-btn add").html("Added");
+							
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		});
+
+		// wink other users 
+		$("#wink").click(function(){
+			var user_ids = $('#hidden_id').val();
+			var main_users = "{{ Session::get('id') }}";
+			// Returns successful data submission message when the entered information is stored in database.
+			if(user_ids == '' || main_users == '')
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile-detail",
+                    dataType:'json',
+                    data:{ 
+
+                    		wink_user_id : user_ids,
+                    		manage_users_id : main_users,
+                    	  	action : 'wink',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'You just wink to this member',
+							      'success'
+							    );
+							$("#wink").html("winked");
+							
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		});
+
+		// send messege to others
+		$("#send").click(function(){
+			var user_idss = $('#hidden_id').val();
+			var send_by = "{{ Session::get('id') }}";
+			var msg = $('#msg').val();
+			// Returns successful data submission message when the entered information is stored in database.
+			if(user_idss == '' || send_by == '' || msg == '' )
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile-detail",
+                    dataType:'json',
+                    data:{ 
+                    		messenger_id : send_by,
+                    		manage_users_id : user_idss,
+                    		message : msg,
+                    	  	action : 'send',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'Message send successfully to this member',
+							      'success'
+							    );
+							$("#send").html("sent");
+							
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		});
+
+
+	});
+	
+
+</script>
+
+
 <script type="text/javascript">
 	$("#interested").change(function (){
 

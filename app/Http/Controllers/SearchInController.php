@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Validator;
+use Session;
 
 class SearchInController extends Controller
 {	
@@ -48,7 +49,19 @@ class SearchInController extends Controller
     {
     	if($request->isMethod('get'))
     	{
-    		return view ('content.profile-about');		
+             $added = DB::table('user_connections')
+                  ->where('manage_users_id',session::get('id'))
+                  ->where('added_user_id',$request->input('id'))
+                  ->first();
+        $winked = DB::table('user_connections')
+                  ->where('manage_users_id',session::get('id'))
+                  ->where('wink_user_id',$request->input('id'))
+                  ->first();
+        return view ('content.profile-about')->with([
+            'added'=>$added,
+            'winked'=>$winked
+          ]);
+    		
     	}
     }
 
