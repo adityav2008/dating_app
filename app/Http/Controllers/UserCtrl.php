@@ -253,7 +253,7 @@ class UserCtrl extends Controller
         }
       }
 
-      //edit user age in profile 
+      //edit user location in profile 
       if($request->isMethod('post'))
       {
         if($request['action'] == 'update_location')
@@ -263,6 +263,23 @@ class UserCtrl extends Controller
           unset($data['action']);
          
           $flag = DB::table('manage_users')->where('id',$data['manage_users_id'])->update(['location'=> $data['location']]);
+
+          return response()->json($flag);
+        }
+      }
+
+      //edit user image in profile 
+      if($request->isMethod('post'))
+      {
+        if($request['action'] == 'add_image')
+        {
+          
+          $data = $request->all();
+          unset($data['_token']);
+          unset($data['action']);
+          $fileName = explode('C:\fakepath', $data['image']);
+         dd($fileName);
+          $flag = $flag = DB::table('user-images')->insertGetId($data);
 
           return response()->json($flag);
         }

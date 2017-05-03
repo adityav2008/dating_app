@@ -53,9 +53,41 @@
 
 								<li class="pull-left">
 
-									<a class="grey-btn" href="#">Add Photo <i class="fa fa-photo" aria-hidden="true"></i></a>
+									<a class="grey-btn" data-toggle="modal" data-target="#myModal" href="#myModal">Add Photo <i class="fa fa-photo" aria-hidden="true"></i></a>
 
 								</li>
+								<!-- Trigger the modal with a button -->
+									<!-- Modal -->
+									<div id="myModal" class="modal fade" role="dialog">
+									  <div class="modal-dialog">
+
+									    <!-- Modal content-->
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal">&times;</button>
+									        <h4 class="modal-title" style="text-align: center">Add Photo</h4>
+									      </div>
+									      <div class="modal-body">
+									      	<div class="pull-left" style="width: 50%;font-size: 15px;">
+									        	<input type="file" name="image" id="user_image">
+									        </div>
+									        <div class="pull-right" style="width: 62%;font-size: 12px;">
+									        	<p>(Choose a jpg, png, gif or bmp file.)</p>
+
+												<p>	Your primary photo must be a clear photo of you—and only you. Your face should be clearly visible in your primary photo. Photos containing copyrighted, pornographic or offensive material, underage individuals, or photos where you are not clearly identifiable will be removed </p>
+											</div>
+									      </div>
+									      <div class="clearfix"></div>
+									      <div class="modal-footer" style="text-align: center">
+									      <p> Note: Your primary photo may be cropped for consistency.</p>
+									      <p> Photos that include nudity will not be approved.</p>
+									      	<button type="button"  class="btn2" id="image">Save</button>
+									        <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+									      </div>
+									    </div>
+
+									  </div>
+									</div>
 
 								<li class="pull-right">
 
@@ -720,6 +752,61 @@ $(document).ready(function(){
 							swal(
 							      'Success...',
 							      'location updated !',
+							      'success'
+							    );
+							$('.close').click();
+							location.reload();
+                    	}
+
+                        
+                    }
+                });	
+			}
+			return false;
+		})
+
+		//update age
+		$("#image").click(function(){
+			var user_image = $("#user_image").val();
+			var main_users = "{{ Session::get('id') }}";
+			// Returns successful data submission message when the entered information is stored in database.
+
+			if(image =='')
+			{
+			  alert("Please Fill All Fields");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+				 $.ajax({
+                    type:'post',
+                    url:"profile",
+                    dataType:'json',
+                    data:{ 
+                    		image : user_image,
+                    		manage_users_id : main_users,
+                    	  	action : 'add_image',
+                    	  	_token:'{{csrf_token()}}'
+                    	 },
+                    success: function(result){
+                    	if(result == 0 )
+                    	{
+                    		
+							swal(
+							      'Oops...',
+							      'Try Again later..',
+							      'error'
+							    )
+
+							$('#myModal').modal('hide');
+							location.reload();
+                    	}
+                    	else
+                    	{
+                    		
+							swal(
+							      'Success...',
+							      'Image added !',
 							      'success'
 							    );
 							$('.close').click();
