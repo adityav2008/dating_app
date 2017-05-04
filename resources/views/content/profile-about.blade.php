@@ -14,6 +14,7 @@
 		    </div>
 			<div class="col-lg-9">
 				<?php
+
 			     $values = DB::table('manage_users')->where('id','=',$_GET['id'])->first();
                  
                 
@@ -342,7 +343,7 @@
 		// AJAX Code To Submit Form.
 			 $.ajax({
                 type:'post',
-                url:"views",
+                url:"{{Request::root()}}/profile-about",
                 dataType:'json',
                 data:{ 
                 		viewer_users_id: viewer,
@@ -351,7 +352,7 @@
                 	  	_token:'{{csrf_token()}}'
                 	 },
                 success: function(result){
-                	alert(result);
+                	console.log(result);
                 }
             });	
 		}
@@ -600,6 +601,16 @@
           $("#additional-info").css('display','block');
       } 
   });
+</script>
+
+<script type="text/javascript">
+$(window).unload(function() {
+     var currentURL = window.location.href;
+     var index = currentURL.indexOf("&page=");
+     if(index > -1) {
+         window.location.href = currentURL.substring(0, index);
+     }
+});
 </script>
 
 <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>

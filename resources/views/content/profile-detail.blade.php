@@ -43,11 +43,6 @@
 				</div>
 				<?php
 				
-			    $result = DB::table('manage_users')
-			    				->whereNotIn('id',array(Session::get('id')))
-			    				->where('status',1)
-			    				->paginate(1);
-                 
 			    function cm2feet($cm)
 				{
 				     $inches = $cm/2.54;
@@ -56,12 +51,51 @@
 				     return sprintf('%d ft %d inch', $feet, $inches);
 				}
 
-			    ?>
+			   
+			
+			    if(isset($search) || empty($search))
+				{
+					foreach ($search as $value) 
+					{
 
-			    
+						$res_for   = $value->looking_for;
+						$res_fromAge   = $value->from_age;
+						$res_toAge   = $value->to_age;
+						$res_location   = $value->location;
+						$res_fromHeight   = $value->from_height;
+						$res_toHeight   = $value->to_height;
+						$res_relationship   = $value->relationship;
+						$res_children   = $value->children;
+						$res_education   = $value->education;
+						$res_ethnicity   = $value->ethnicity;
+						$res_religion   = $value->religion;
+						$res_bodyType   = $value->body_type;
+						$res_smoke   = $value->smoking;
+						$res_search   = $value->search_name;
+					}
 
+					if(!empty($search))
+					{
+				 
+				    	$result = DB::table('manage_users')
+					            ->whereNotIn('id',array(Session::get('id')))
+					            ->where('gender',$res_for)
+					            ->whereBetween('age', array( $res_fromAge, $res_toAge))
+					            ->whereBetween('height', array( $res_fromHeight, $res_toHeight))
+					            ->where('relationship',$res_relationship)
+					            ->where('children',$res_children)
+					            ->where('education',$res_education)
+					            ->where('ethnicity',$res_ethnicity)
+					            ->where('religion',$res_religion)
+					            ->where('body_type',$res_bodyType)
+					            ->where('smoking',$res_smoke)
+					            ->paginate(28);   
+
+				    }
+
+				    ?>
+			         
 			    @foreach($result as $values)
-			    
       			<div class="details-pro" id="{{ $values->id }}" >
 					<div class="profile-pic pull-left">
 						<div class="pro-pic">
@@ -369,6 +403,9 @@
 				</div>
 
 				@endforeach
+				<?php
+				}
+				?>
 
 				<div class="paginate">
 					{{ $result->appends(['id' => $result[0]->id ])->links() }}

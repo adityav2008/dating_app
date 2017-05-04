@@ -29,9 +29,9 @@ Route::get('/messages',function(){
   return view('content.messages');
 });
 
-Route::get('/carousel',function(){
-  return view('content.carousel');
-});
+// Route::get('/carousel',function(){
+//   return view('content.carousel');
+// });
 
 Route::get('/connection',function(){
   return view('content.connection');
@@ -41,9 +41,9 @@ Route::get('/profile',function(){
   return view('content.profile');
 });
 
-Route::get('/profile-search',function(){
-  return view('content.profile-search');
-});
+// Route::get('/profile-search',function(){
+//   return view('content.profile-search');
+// });
 
 // Route::get('/views',function(){
 //   return view('content.views');
@@ -65,7 +65,11 @@ Route::post('/index', 'UserCtrl@doSignUp');
 
 Route::any('/online-now', 'UserCtrl@getOnline');
 
-Route::any('/views', 'UserCtrl@getViews');
+Route::any('/carousel', 'UserCtrl@getMatch');
+
+Route::any('/views', 'UserCtrl@getOnline');
+
+Route::any('/profile-search', 'UserCtrl@getSearch');
 
 Route::any('/search-edit', 'SearchInController@doSearchIn');
 

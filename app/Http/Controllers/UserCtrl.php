@@ -199,8 +199,8 @@ class UserCtrl extends Controller
             $values = DB::table('manage_users')->where('email',$data['email'])->first(['id']);
             $user_id = $values->id;
             Session::put('id', $user_id);
-			//update last seen and online status
-            $flag = DB::table('manage_users')->where('id',$user_id)->update(['last_seen'=> date('Y-m-d h:i:s'),'online_status' => 1]);
+            //update last seen and online status
+            $flag = DB::table('manage_users')->where('id',array(Session::get('id')))->update(['last_seen'=> date('Y-m-d h:i:s'),'online_status' => 1]);
             return Redirect::to('profile?id='.$user_id);
         
         }
@@ -279,8 +279,10 @@ class UserCtrl extends Controller
           $data = $request->all();
           unset($data['_token']);
           unset($data['action']);
-          $fileName = explode('C:\fakepath', $data['image']);
-         dd($fileName);
+          $fileName = explode('C:\fakepath\\', $data['image']);
+
+          $imagePath = $data['image']->move(public_path('images'), $fileName);
+          dd($imagePath);
           $flag = $flag = DB::table('user-images')->insertGetId($data);
 
           return response()->json($flag);
@@ -291,11 +293,13 @@ class UserCtrl extends Controller
 
     public function getSignOut() {
 
-	 //update last seen and online status
+    //update last seen and online status
     $flag = DB::table('manage_users')->where('id',Session::get('id'))->update(['last_seen'=> date('Y-m-d h:i:s'),'online_status' => 0]);
-	
+
     Auth::logout();
     Session::flush();
+    
+            
     return Redirect::to('/');
 
     }
@@ -304,6 +308,31 @@ class UserCtrl extends Controller
     {
       if($request->isMethod('get'))
       {
+        
+          if(isset($_GET['search']))
+           {
+              $autoSearches = DB::table('user_search')
+                      ->where('user_id',Session::get('id'))
+                      ->where('search_name',$_GET['search'])
+                      ->get();
+
+           }
+           else
+           {
+
+            $autoSearches = DB::table('user_search')
+                      ->where('user_id',Session::get('id'))
+                      // ->where('search_name',$_GET['search'])
+                      ->get();
+                      
+
+            if(count($autoSearches) > 1){
+             $autoSearches = DB::table('user_search')
+                       ->where('user_id',Session::get('id'))
+                       ->take(1)
+                       ->get();
+            }
+          } 
 
         $added = DB::table('user_connections')
                   ->where('manage_users_id',session::get('id'))
@@ -315,7 +344,8 @@ class UserCtrl extends Controller
                   ->first();
         return view ('content.profile-detail')->with([
             'added'=>$added,
-            'winked'=>$winked
+            'winked'=>$winked,
+            'search'=>$autoSearches
           ]);
       }
 
@@ -365,17 +395,40 @@ class UserCtrl extends Controller
         }
       }
     }
-	
-	public function getOnline(Request $request){
+
+    public function getOnline(Request $request){
 
       if($request->isMethod('get'))
       {
         $result = DB::table('manage_users')
                       ->whereNotIn('id',array(session::get('id')))
+                      ->where('status', '!=' , 0)
+                      ->where('online_status','!=', 0)
                       ->paginate(1);
 
+        // current online users 
+        $online = DB::table('manage_users')
+                      ->whereNotIn('id',array(session::get('id')))
+                      ->where('status', '!=' , 0)
+                      ->where('online_status','!=', 0)
+                      ->get();              
+
+        // recently online users 
+        $recent = DB::table('manage_users')
+                      ->whereNotIn('id',array(session::get('id')))
+                      ->where('status', '!=' , 0)
+                      ->where('last_seen','!=', 0)
+                      ->get();              
+
+        $views = DB::table('view_profiles')
+                  ->whereNotIn('id',array(session::get('id')))
+                  ->get();
+
         return view('content.views')->with([
-            'result'=>$result
+            'result'=>$result,
+            'views'=> $views,
+            'online'=>$online,
+            'recent'=>$recent
           ]);
       }
     }
@@ -384,7 +437,10 @@ class UserCtrl extends Controller
 
       if($request->isMethod('get'))
       {
+        
+    
         return view('content.views');
+
       }
 
       if($request->isMethod('post'))
@@ -393,4 +449,91 @@ class UserCtrl extends Controller
       }
     }
 
+  public function getMatch(Request $request)
+  {
+
+    if($request->isMethod('get'))
+      {
+       
+        $return = DB::table('manage_users')
+                    ->whereNotIn('id',array(Session::get('id')))
+                    ->get(); 
+        
+        return view('content.carousel')->with(['values' => $return]);
+       //return view('content.carousel');
+      }
+  }
+
+  public function getSearch(Request $request){
+    if($request->isMethod('get'))
+    {
+      if(isset($_GET['search']))
+       {
+          $auto_Search = DB::table('user_search')
+                  ->where('user_id',Session::get('id'))
+                  ->where('search_name',$_GET['search'])
+                  ->get();
+
+       }
+       else
+       {
+
+        $auto_Search = DB::table('user_search')
+                  ->where('user_id',Session::get('id'))
+                  // ->where('search_name',$_GET['search'])
+                  ->get();
+                  
+
+        if(count($auto_Search) > 1){
+         $auto_Search = DB::table('user_search')
+                   ->where('user_id',Session::get('id'))
+                   ->take(1)
+                   ->get();
+        }
+      }
+       
+
+
+      // if(count($filter) > 0)
+      // {
+      //   $user_default_match = DB::table('manage_users')
+      //                       ->where('id',array(Session::get('id')))
+      //                       ->get();
+      //   foreach ($user_default_match as $value)
+      //   {
+      //       $res_for   = $value->looking_for;
+      //       $res_Age   = $value->age;
+      //       $res_Location   = $value->location;
+      //       $res_Height   = $value->height;
+      //       $res_relationship   = $value->relationship;
+      //       $res_children   = $value->children;
+      //       $res_education   = $value->education;
+      //       $res_ethnicity   = $value->ethnicity;
+      //       $res_religion   = $value->religion;
+      //       $res_bodyType   = $value->body_type;
+      //       $res_smoke   = $value->smoking;
+            
+      //   }
+
+      //   $autoSearch = DB::table('manage_users')
+      //                 ->whereNotIn('id',array(Session::get('id')))
+      //                 ->where('gender',$res_for)
+      //                 ->where('age', $res_Age)
+      //                 ->where('height',$res_Height)
+      //                 ->where('relationship',$res_relationship)
+      //                 ->where('children',$res_children)
+      //                 ->where('education',$res_education)
+      //                 ->where('ethnicity',$res_ethnicity)
+      //                 ->where('religion',$res_religion)
+      //                 ->where('body_type',$res_bodyType)
+      //                 ->where('smoking',$res_smoke)
+      //                 ->get();
+      //   dd($autoSearch);
+      // }
+
+      return view('content.profile-search')->with([
+        'search' => $auto_Search
+        ]);
+    }
+  }
 }

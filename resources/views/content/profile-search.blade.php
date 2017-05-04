@@ -29,7 +29,7 @@
 					<?php
 					//dd(Session::get('id')) ;
 					 $userData = DB::table('manage_users')->where('id',array(Session::get('id')))->first();
-					 //$userData = DB::table('manage_users')->where('id',$_GET['id'])->first();
+					// $userData = DB::table('manage_users')->where('id',$_GET['id'])->first();
 					 
 					 ?>
 					 
@@ -42,14 +42,16 @@
 									<li><span style="text-transform: uppercase;">{{ $userData->gender }}</span> interested in <span style="text-transform: uppercase;">{{ $userData->looking_for}}</span></li>
 									<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
 								@endif	
+
+					
 				<?php
-				$filter = DB::table('user_search')->where('user_id',Session::get('id'))->get();
+				//$filter = DB::table('user_search')->where('user_id',Session::get('id'))->get();
 
 				//$filter = DB::table('user_search')->where('user_id',$_GET['id'])->get();
 				
-				if(isset($filter) || empty($filter))
+				if(isset($search) || empty($search))
 				{
-					foreach ($filter as $value) 
+					foreach ($search as $value) 
 					{
 
 						$res_for   = $value->looking_for;
@@ -82,17 +84,12 @@
 
 				<?php
 
-				if(!empty($filter))
+				if(!empty($search))
 				{
-			     	$result = DB::table('manage_users')
-			                ->whereNotIn('id',array($_GET['id']))
-			                ->paginate(28);
-				}
-				else
-				{
+			 
 			    	$result = DB::table('manage_users')
-				            ->whereNotIn('id',array($_GET['id']))
-				            ->where('looking_for',$res_for)
+				            ->whereNotIn('id',array(Session::get('id')))
+				            ->where('gender',$res_for)
 				            ->whereBetween('age', array( $res_fromAge, $res_toAge))
 				            ->whereBetween('height', array( $res_fromHeight, $res_toHeight))
 				            ->where('relationship',$res_relationship)
@@ -102,8 +99,10 @@
 				            ->where('religion',$res_religion)
 				            ->where('body_type',$res_bodyType)
 				            ->where('smoking',$res_smoke)
-				            ->paginate(28);
+				            ->paginate(28);   
+
 			    }
+			    	
 			    ?>
 			   
 					<ul class="clearfix">

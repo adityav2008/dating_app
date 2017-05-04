@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use Session;
+use URL;
+use Redirect;
+use Illuminate\Support\Facades\Input;
 
 class SearchInController extends Controller
 {	
@@ -22,6 +25,7 @@ class SearchInController extends Controller
     	{
     		if($request)
       		{	
+            
 		        unset($request['_token']);
 		        unset($request['action']);
 		        unset($request['save_me']);
@@ -49,7 +53,7 @@ class SearchInController extends Controller
     {
     	if($request->isMethod('get'))
     	{
-             $added = DB::table('user_connections')
+        $added = DB::table('user_connections')
                   ->where('manage_users_id',session::get('id'))
                   ->where('added_user_id',$request->input('id'))
                   ->first();
@@ -63,19 +67,30 @@ class SearchInController extends Controller
           ]);
     		
     	}
-		if($request->isMethod('post'))
-		{
-			if($request['action'] == 'viewer')
-			{
+      if($request->isMethod('post'))
+      {
+        if($request['action'] == 'viewer')
+        {
+          $data = $request->all();
+          unset($data['_token']);
+          unset($data['action']);
 
-			  $data = $request->all();
-			  unset($data['_token']);
-			  unset($data['action']);
-			 
-			  $flags = DB::table('view_profiles')->insertGetId($data);
-			  return response()->json($flags);
-			}
-		}
+          // check redudancy 
+          $retVal = DB::table('view_profiles')->where('manage_users_id',session::get('id'))->get();
+
+          if(count($retVal) == 0)
+          {
+            $flags = DB::table('view_profiles')
+                  ->whereNotIn('manage_users_id',array(session::get('id')))
+                  ->insertGetId($data);
+            return response()->json($flags);
+          }
+          else{
+            return null;
+          }
+        }
+      }
+
     }
 
  }   

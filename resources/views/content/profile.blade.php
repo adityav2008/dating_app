@@ -238,9 +238,19 @@
 						<li class="clearfix">
 
 							<span class="pull-left"><i class="fa fa-facebook-square" aria-hidden="true"></i>Facebook Verified</span>
+							<?php
+							$facebook = DB::table('manage_users')
+				                    ->where('id',Session::get('id'))
+				                    ->get();
+				                    ?>
+				             @foreach($facebook as $fb)   
 
-							<button class="btn2">Verify Now</button>
-
+								@if($fb->verified != 1)
+								<button class="btn2">Verify Now</button>
+								@else
+								<button class="btn2 green-btn">Verified</button>
+								@endif
+							@endforeach
 						</li>
 
 						<li class="clearfix">

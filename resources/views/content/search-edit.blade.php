@@ -212,10 +212,14 @@
                                           <h3 class="">Education</h3>
                                           <div>
                                              <label>
-                                             <input class="js-criteria-education" value="6" type="checkbox"><span class="label-text">No degree</span>
+                                             <input class="js-criteria-education" name="education[]" value="6" type="checkbox"><span class="label-text">No degree</span>
                                              </label>
                                           </div>
-                                          <div><label><input class="js-criteria-education" name="education[]" value="1" type="checkbox"><span class="label-text">High school graduate</span></label>
+                                          <div>
+                                             <label>
+                                                <input class="js-criteria-education" name="education[]" value="1" type="checkbox">
+                                                <span class="label-text">High school graduate</span>
+                                             </label>
                                           </div>
                                           <div><label><input class="js-criteria-education" name="education[]" value="2" type="checkbox"><span class="label-text">Attended college</span></label>
                                           </div>
@@ -497,7 +501,7 @@
                               </div>
                               <footer>
                                  <span class="js-button-search minor-button-confirm spin-control" style="-moz-user-select: none;" tabindex="0">
-                                 <span><a href="{{url('/profile-search?id=')}}{{ $values->id }}"><button class="btn2">Search</button></a></span>
+                                 <span><a href="{{url('/profile-search?id=')}}{{ $values->id }}&search={{$values->search_name}}"><button class="btn2">Search</button></a></span>
                                  </span>
                                  <span class="js-button-edit minor-button-v2">
                                  <span><button data-toggle="modal" data-target="#myModal_{{ $values->id }}" class="grey-btn">Edit</button></span></span>
