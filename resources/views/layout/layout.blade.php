@@ -45,9 +45,49 @@
 
 <script src="https://cdn.jsdelivr.net/sweetalert2/6.6.0/sweetalert2.min.js"></script>
 
+<style>
+#google-language {position: fixed;bottom: 0;left: 0;display:inline-block;width:200px;}
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body{ top: 0px !important; }
+</style>
+
+<script type="text/javascript">
+
+ function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'ar,de,en,es,fr,it,nl',
+          autoDisplay: true
+      }, 'google_translate_element');
+      var a = document.querySelector("#google_translate_element select");
+  }
+
+  $(document).ready(function(){
+    // setTimeout(function(){
+    //   $('.skiptranslate').each(function(){
+    //     if($(this).attr('dir') == 'ltr')
+    //     {
+    //       $(this).remove('div');
+    //     }
+    //   })
+    //   console.log('hello');
+    // },1000);
+
+  })
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
 <body>
+  <div id="google-language" class="col-sm-12">
+      <div id="google_translate_element">
+  		<div class="skiptranslate goog-te-gadget" style="">
+  			<div id=":1.targetLanguage">
+
+  			</div>
+  		</div>
+  	</div>
+  </div>
 
   @yield('content')
 
@@ -96,4 +136,3 @@ $('#go-back').click(function(){
 </body>
 
 </html>
-
