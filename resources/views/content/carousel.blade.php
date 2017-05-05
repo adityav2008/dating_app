@@ -28,23 +28,26 @@
 								                    ->where('status','!=',0)
 								                    ->get(); 
 											 ?>
-											@foreach($return as $result)
-										<div class="hub-slider-slides">
+											 <div class="hub-slider-slides" >
 										
 											<ul>
-											
+											@foreach($return as $result)
+
+										
 												<li>
 													<img src="{{url('/images')}}/{{ $result->image }}" alt="" height="280px" width="300px" />
-													<div class="photo-age">
+													<div class="photo-age" data-unique_id="{{$result->id}}">
 														<span class="photo pull-left">Photo 1</span>
-														<span id="hidden_id" value="{{$result->id }}" class="photo pull-left">Unique Id : {{ $result->id }}</span>
 														<span class="age pull-right">Age: {{$result->age}}</span>
 													</div>
 												</li>
-												</ul>
-											@endforeach	
+											
+
+										@endforeach	
+										</ul>
 											
 										</div>
+
 										<div class="hub-slider-controls">
 
 											<button id="no" class="hub-slider-arrow hub-slider-arrow_next pull-left">
@@ -58,9 +61,12 @@
 											</button>
 
 										</div>
+										
+
 									</div>
 								</div>
 								<a class="grey-btn" ><i aria-hidden="true" class="fa fa-circle-o"></i> MAYBE</a>
+
 							</div>
 						</div>
 						<div id="tabs-2">
@@ -166,57 +172,15 @@ $(document).ready(function(){
 
 	// request profile to get connected
 		$("#yes").click(function(){
-			var user_idss = $('#hidden_id').val();
-			var send_by = "{{Session::get('id')}}";
-			alert(user_idss);
-			alert(send_by);
-			// var msg = $('#msg').val();
-			// Returns successful data submission message when the entered information is stored in database.
-			if(user_idss == '' || send_by == '' )
-			{
-			  alert("Please Fill All Fields");
-			}
-			else
-			{
-			// AJAX Code To Submit Form.
-				 $.ajax({
-                    type:'post',
-                    url:"carousel",
-                    dataType:'json',
-                    data:{ 
-                    		messenger_id : send_by,
-                    		manage_users_id : user_idss,
-                    	  	action : 'request',
-                    	  	_token:'{{csrf_token()}}'
-                    	 },
-                    success: function(result){
-                    	if(result == 0 )
-                    	{
-                    		
-							swal(
-							      'Oops...',
-							      'Try Again later..',
-							      'error'
-							    )
+			$(".hub-slider-slides").children('ul').children('li').each(function(){
 
-                    	}
-                    	else
-                    	{
-                    		
-							swal(
-							      'Success...',
-							      'Request send successfully to this member',
-							      'success'
-							    );
-							$("#send").html("sent");
-							
-                    	}
+				if($(this).data('key') == 0)
+				{
+					console.log($(this).children('div').data('unique_id'));
+				}
 
-                        
-                    }
-                });	
-			}
-			return false;
+			})
+			
 		});
 });
 

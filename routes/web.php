@@ -97,9 +97,7 @@ Route::group(array('before' => 'auth'), function() {
 
 });
 //prashant kumar
-
-// Admin Section Routes
-
+Route::get('admin', 'Auth\LoginController@showLoginForm');
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin/login', 'Auth\LoginController@login');
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
@@ -113,6 +111,7 @@ Route::get('admin/password/reset', 'Auth\ForgotPasswordController@showLinkReques
 Route::post('admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset');
+
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -144,14 +143,14 @@ Route::group(['middleware' => ['auth']], function () {
       Route::post('add-new-subscription',"SubscriptionCtrl@doChangeSubscription");
       Route::get('delete-subscription/{id}',"SubscriptionCtrl@deleteSubscription");
     });
-
-	Route::group(['prefix' => 'newsletter'], function () {
+  
+  Route::group(['prefix' => 'newsletter'], function () {
       Route::get('newsletter-list',"NewsletterCtrl@index");
       Route::get('add-new-newsletter',"NewsletterCtrl@addNewsletter");
       Route::post('add-new-newsletter',"NewsletterCtrl@doNewsletter");
 
     });
-
-
+  
+  
   });
 });
