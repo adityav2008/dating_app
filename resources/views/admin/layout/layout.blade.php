@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Dating Admin</title>
+<title>{{env('APP_NAME_ADMIN')}}</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="{{Request::root()}}/assets/admin/css/bootstrap.min.css" />
