@@ -66,12 +66,29 @@ class RegisterController extends Controller
             $user = manage_users::firstOrCreate(['email' => $socialUser->getEmail(),'name'  => $socialUser->getName(),'image' => $socialUser->getAvatar(),'gender'=> $socialUser['gender'],'verified' => $socialUser['verified'] ]  );
             $path = $socialUser->getAvatar();
             $filename = basename($path);
+<<<<<<< Updated upstream
             $user->socialProviders()->create([
                                                 'provider_id' => $socialUser->getId(),
                                                 'provider' => $provider
                                               ]);
             Session::put('id', $user['id']);
             return redirect('new-account?id='.$user['id'])->with('success','Record inserted!');
+=======
+
+            //$image =  Image::make($path)->save(public_path('images/' . $filename));  
+
+                                    
+            $user->socialProviders()->create(
+                                               ['provider_id' => $socialUser->getId(),'provider' => $provider]
+                                            );
+            // $user = DB::table('social_providers')->insertGetId($socialProvider);
+            Session::put('id', $user['id']);
+            
+
+            return redirect('profile?id='.$user['id']);
+                
+            
+>>>>>>> Stashed changes
         }
         else
         {
