@@ -53,6 +53,9 @@
                         <div class="btn-group">
                           <button data-toggle="dropdown" class="btn dropdown-toggle">Click<span class="caret"></span></button>
                           <ul class="dropdown-menu">
+                            <li><a href="{{url('/admin/user/media/photos')}}?id={{$user->id}}">Photos</a></li>
+                            <li><a href="{{url('/admin/user/media/video')}}?id={{$user->id}}">Videos</a></li>
+                            <li class="divider"></li>
                             <li><a href="{{url('/admin/user/add-new-user')}}?action=edit&id={{$user->id}}">Edit</a></li>
                             <li><a href="{{url('/admin/user/add-new-user')}}?action=delete&id={{$user->id}}">Delete</a></li>
                             <li class="divider"></li>

@@ -16,7 +16,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        return view('admin.auth.login');
+        return view('auth.login');
     }
 
     /**
@@ -59,7 +59,8 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->username() => 'required', 'password' => 'required',
+            $this->username() => 'required|string',
+            'password' => 'required|string',
         ]);
     }
 
@@ -158,7 +159,7 @@ trait AuthenticatesUsers
 
         $request->session()->regenerate();
 
-        return redirect('/admin/login');
+        return redirect('/');
     }
 
     /**

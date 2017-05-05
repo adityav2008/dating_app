@@ -36,21 +36,21 @@ return [
     ],
 
     'facebook' =>[
-                    'client_id' => '1827107707614429',
-                    'client_secret' => 'b32263287f1d82e12faac188fddfd06e',
-                'redirect' =>'http://www.neurons-it.in/dating/public/auth/facebook/callback',
+                    'client_id' => '1914190298860963',
+                    'client_secret' => '1271e0b00c5a45dba546b58f1e6c6161',
+                    'redirect' =>'http://localhost/casual_seduction/public/auth/facebook/callback',
                 ],
 
     'twitter' => [
                     'client_id' => '79cYMWSpidWJerEZwONIZu7Px',
                     'client_secret' => 'iGCJID39UKTYTbVj9bV1SyqvjVwIj7Be3xFqLAHTGw5oj7Mkd8',
-                    'redirect' => 'http://www.neurons-it.in/dating/public/auth/twitter/callback',
+                    'redirect' => 'http://localhost/casual_seduction/public/auth/twitter/callback',
                 ],
-                
+
     'google' => [
                     'client_id' => '373918899213-siljct4drecgpe3mu9c8lupc6rpvfedh.apps.googleusercontent.com',
                     'client_secret' => 'An_Et4zvHasBNUjhLc_zCyyK ',
-                    'redirect' => 'http://www.neurons-it.in/dating/public/auth/google/callback',
+                    'redirect' => 'http://localhost/casual_seduction/public/auth/google/callback',
                 ],
 
 ];
