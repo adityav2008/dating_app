@@ -25,9 +25,9 @@ Route::get('/contact',function(){
 });
 
 
-// Route::get('/messages',function(){
-//   return view('content.messages');
-// });
+Route::get('/messages',function(){
+  return view('content.messages');
+});
 
 // Route::get('/carousel',function(){
 //   return view('content.carousel');
@@ -71,8 +71,6 @@ Route::any('/views', 'UserCtrl@getOnline');
 
 Route::any('/profile-search', 'UserCtrl@getSearch');
 
-Route::any('/messages', 'UserCtrl@sendMsg');
-
 Route::any('/search-edit', 'SearchInController@doSearchIn');
 
 Route::any('/profile-about', 'SearchInController@doProfileAbout');
@@ -96,9 +94,16 @@ Route::group(array('before' => 'auth'), function() {
      | --
      */
     Route::get('header_inner', 'UserCtrl@getSignOut');
-
 });
+
+//for payment.
+Route::get('payment-details','PaypalController@index');
+Route::post('payment-details','PaypalController@getCardInfo');
+Route::get('payment-gateway','PaypalController@splitPayTrip');
+//end payment.
+
 //prashant kumar
+Route::get('admin', 'Auth\LoginController@showLoginForm');
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin/login', 'Auth\LoginController@login');
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
@@ -144,14 +149,14 @@ Route::group(['middleware' => ['auth']], function () {
       Route::post('add-new-subscription',"SubscriptionCtrl@doChangeSubscription");
       Route::get('delete-subscription/{id}',"SubscriptionCtrl@deleteSubscription");
     });
-	
-	Route::group(['prefix' => 'newsletter'], function () {
+
+  Route::group(['prefix' => 'newsletter'], function () {
       Route::get('newsletter-list',"NewsletterCtrl@index");
       Route::get('add-new-newsletter',"NewsletterCtrl@addNewsletter");
       Route::post('add-new-newsletter',"NewsletterCtrl@doNewsletter");
 
     });
-	
-	
+
   });
+
 });
