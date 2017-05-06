@@ -13,7 +13,10 @@
 <link rel="stylesheet" href="{{Request::root()}}/assets/admin/css/matrix-media.css" />
 <link href="{{Request::root()}}/assets/admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{Request::root()}}/assets/admin/css/jquery.gritter.css" />
+<link rel="stylesheet" href="{{Request::root()}}/assets/admin/css/style.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<link href="{{Request::root()}}/assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+<script src="{{Request::root()}}/assets/sweetalert2/sweetalert2.min.js"></script>
 </head>
 <body>
 

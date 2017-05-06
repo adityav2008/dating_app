@@ -1,0 +1,133 @@
+html,body{padding:0;margin:0;border:0;outline:none}
+html{font-size:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;}
+body {/*font-family: 'Open Sans', sans-serif;*/ font-family: 'Roboto', sans-serif; font-size:14px; line-height:16px; font-weight:400; color:#242424; background:#fff; overflow-x:hidden; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%; font-weight:400;}
+h1,h2,h3,h4,h5,h6,p{font-weight:normal; margin:0;}
+ul,ol,ul li,ol li{list-style:none; margin:0; padding:0;}
+::-webkit-input-placeholder {color: #767676; font-size:14px; opacity:1;}
+::-moz-placeholder {color: #767676; font-size:14px; opacity:1;}
+:-ms-input-placeholder {color: #767676; font-size:14px; opacity:1;}
+.wrapper{width:95%; margin:0 auto; position:relative; transition:width ease-in-out 200ms; -moz-transition:width ease-in-out 200ms; -webkit-transition:width ease-in-out 200ms; -ms-transition:width ease-in-out 200ms; -o-transition:width ease-in-out 200ms;}
+.overflow{overflow:hidden}
+.clear{clear:both}
+.clear-left{clear:left}
+.clear-right{clear:right}
+a:focus {text-decoration: none; color:007a87;}
+a{color:#007a87; text-decoration:none}
+a:hover{color:#db3641;text-decoration:none}
+a,a:hover,a:focus,input,input:hover,input:focus,select,select:hover,select:focus,option,option:hover,option:focus,button,button:hover,button:focus{outline:none}
+a,input[type=submit],input[type=reset],input[type=button],input[type=file],button{cursor:pointer;transition:all ease-in-out 200ms;-moz-transition:all ease-in-out 200ms;-webkit-transition:all ease-in-out 200ms;-ms-transition:all ease-in-out 200ms;-o-transition:all ease-in-out 200ms;}
+/*img{display:inline-block; max-width:100%;}*/
+label{font-size:14px; line-height:15px; color:#121212; font-weight:normal;}
+.textbox,.textarea,.selectbox{width:280px; height:32px; font-size:14px; line-height:18px; color:#555; padding:5px; text-align:left;}
+.textarea{min-height:32px; max-height:320px;}
+.align-center {text-align: center;}
+.align-right {text-align: right;}
+.btn2, .btn-red {font-family: 'Roboto', sans-serif; display:inline-block; font-size:14px; line-height:14px; font-weight: 700; color:#FFFFFF; text-align:center; text-transform: capitalize; padding:12px 20px; margin:0; border:0; outline:none; background: #008489; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; height: 39px;}
+.btn-red {background: #ff5a5f;}
+.btn-red:hover {background: #008489;}
+.btn2:hover {color:#FFFFFF; background: #FF5A5F;}
+.btn {font-family: 'Roboto', sans-serif; display:inline-block; font-size:14px; line-height:14px; font-weight: 700; height: 39px; vertical-align: top;}
+.btnDisabled{cursor:no-drop; color:#FFFFFF; background: #CECECE;}
+.btnDisabled:hover{color:#FFFFFF; background: #CECECE;}
+.btn-default:focus, .btn-default.focus {background-color: transparent;}
+.btn:active, .btn.active {box-shadow: 0 3px 5px rgba(0, 0, 0, 0) inset; -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, 0) inset; -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0) inset;}
+.btn-block {display: block; white-space: normal; width: 100%;}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800|Roboto:300,300i,400,400i,500,500i,700,700i,900');
+/*header css start*/
+.head {}
+.head .header_top {border-bottom:solid 1px #dbdbdb;}
+.head .media-left {border-right: solid 1px #dbdbdb;}
+.head .media-body {vertical-align: middle;}
+.head .media-body .btn-default {border:none 0; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0; padding: 0 0 0 0;}
+.head .media-body .btn-default:hover {background-color: transparent;}
+.head .media-body .form-control {border:none 0; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0; box-shadow: 0 1px 1px rgba(0, 0, 0, 0) inset; -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0) inset; -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0) inset;}
+.head .navi {padding-top: 9px; margin-right: 25px;}
+.head .navi li {margin-right: 25px;}
+.head .navi li:last-child {margin-right: 0;}
+.head .navi li a {font-family: 'Open Sans', sans-serif; color: #7d7d7d; font-weight: 400; font-size: 14px; line-height: 14px; padding: 15px 0;}
+.head .navi li a:hover {background-color: transparent;}
+.head .pro_img {float: right;}
+.head .pro_img img {border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%; margin-top: 16px;}
+/*navigaition css start*/
+.navigation {background-color: #484848;}
+/*middle-container css start*/
+.middle-container {padding: 30px 0;}
+.middle-container .alert-info {margin-bottom: 20px;}
+.middle-container .alert-info .media {margin-top: 0; padding: 10px 0; }
+.middle-container .alert-info .media-left {padding-right: 20px;}
+.middle-container .alert-info h4 {font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 700; color: #484848; margin-bottom: 10px;}
+.middle-container .alert-info p {color: #484848; margin-bottom: 15px;}
+.middle-container .alert-info .close {opacity: 1; color: #127a87;}
+.middle-container .main-content {}
+.middle-container .left-sidebar {float: left;}
+.middle-container .left-sidebar .profile {border:solid 1px #dce0e0; margin-bottom: 20px;}
+.middle-container .left-sidebar .pro-img img {border-bottom: solid 1px #dce0e0; max-width: 100%;}
+.middle-container .left-sidebar .pro-content {text-align: center; padding: 20px 0;}
+.middle-container .left-sidebar .pro-content h3 {font-family: 'Roboto', sans-serif; font-size: 22px; line-height: 22px; font-weight: 700; color: #484848; margin-bottom: 15px}
+.middle-container .left-sidebar .pro-content a {display: block; margin-bottom: 5px}
+.middle-container .left-sidebar .panel, .middle-container .main-right .penel {margin-bottom: 20px;}
+.middle-container .left-sidebar .panel-default, .middle-container .main-right .panel-default {border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0; -ms-border-radius: 0;}
+.middle-container .left-sidebar .panel-heading, .middle-container .main-right .panel-heading {font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 16px; font-weight: 600; color:#484848; padding: 15px; border-bottom: solid 1px #dce0e0;}
+.middle-container .left-sidebar .panel-body ul li {display: block; padding: 10px 0;}
+.middle-container .left-sidebar .panel-body ul li:last-child {padding-bottom: 0;}
+.middle-container .main-right {float: right;}
+.middle-container .main-right .notification {margin-bottom: 20px;}
+.middle-container .main-right .notification ul li {padding: 12px 0; border-bottom: solid 1px #dce0e0;}
+.middle-container .main-right .notification ul li:last-child {padding-bottom: 0; border-bottom: none 0;}
+.middle-container .main-right .notification ul li:first-child {padding-top: 0;}
+.middle-container .main-right .notification ul li a {}
+.middle-container .main-right .messages .panel-body {padding: 0 0 20px 0;}
+.middle-container .main-right .messages .table-condensed {border-bottom: 1px solid #ddd;}
+.dark-gery {color: #484848;}
+.middle-container .main-right .messages td {color: #7a7e82; padding: 20px 10px;}
+.middle-container .main-right .messages td h4 {font-weight: 600; color: #3fb34f; font-size: 14px;}
+.middle-container .main-right .messages td .price {color: #484848;}
+.middle-container .main-right .messages .link {margin-left: 20px; display: inline-block;}
+.foot {border-top: solid 1px #dce0e0;}
+.foot .foot_top {padding: 40px 0;}
+.foot .one-foruth select, .account-section .receive-sms ul li select {background-image: url(../img/down-arrow.png); background-repeat: no-repeat; background-position: 94% center; font-size: 16px; font-weight: 300; height: 44px; line-height: 16px; padding: 10px 40px 10px 10px; width: 100%; appearance: none; -moz-appearance: none; -webkit-appearance: none;  background-color: #fff; border: 1px solid #dbdbdb; color: #484848; margin-bottom: 10px; width: 250px;}
+.foot .one-foruth h5 {font-weight: 600; margin-bottom: 10px; color: #484848;}
+.foot .one-foruth ul li {padding: 5px 0;}
+.foot .one-foruth ul li a {display: block; color: #76767a;}
+.foot .one-foruth ul li a:hover, .foot .terms ul li a:hover {color: #007a87;}
+.pd-left {padding-left: 40px;}
+.foot .foot_bottom {padding: 20px 0; border-top: solid 1px #dce0e0;}
+.foot .copy-right {float: left;}
+.foot .copy-right p {color: #767676;}
+.foot .terms {float:right; color: #767676;}
+.foot .terms ul li {display: inline-block; margin-right: 5px; color: #767676;}
+.foot .terms ul li a {margin-right: 5px; color: #767676; display: block;}
+/*Account page css start*/
+.account-section {}
+.account-section .sidenav-list {margin-bottom: 20px;}
+.account-section .sidenav-list ul li {display: block;  padding: 8px 0;}
+.account-section .sidenav-list ul li a {color: #767676; font-size: 14px;}
+.account-section .sidenav-list ul li.active a {font-weight: 600; color: #484848;}
+.account-section .btn-default {padding: 12px 0;}
+.account-section .push-noti {margin-bottom: 20px;}
+.account-section .push-noti .media-left {width: 270px; padding-right: 20px;}
+.account-section .push-noti .media-left p {color: #484848; line-height: 20px; margin-bottom: 15px;}
+.account-section .push-noti .media-body {width: 600px;}
+.account-section .checkbox-him {margin-bottom: 10px;}
+.account-section .checkbox-him strong {margin-bottom: 5px; line-height: 16px; display: block;}
+.account-section .checkbox-him p {line-height: 20px;}
+.account-section .receive-sms {margin-bottom: 15px;}
+.account-section .receive-sms ul li {width: 49%; display: inline-block; vertical-align: top; line-height: 20px;} 
+.account-section .receive-sms ul li select {font-size: 14px; height: 35px; padding: 5px; width: 180px;}
+.account-section .pay-methods {margin-bottom: 20px;}
+.account-section .add-payment {margin-bottom: 15px;}
+.account-section .add-payment ul li {width: 230px; height: 150px; border: solid 1px #dce0e0; padding: 15px; position: relative; margin-right: 15px; display: inline-block; vertical-align: top;}
+.account-section .add-payment .wrap {position: absolute; left: 0; bottom: 0; width: 100%; padding: 0 15px 12px 15px;}
+.account-section .add-payment .pull-left a {display: block; margin-bottom: 5px; font-size: 14px;}
+.account-section .add-payment ul li center {margin: 20px 0 30px 0;}
+.account-section .add-payment ul li.center p {text-align: center;}
+.account-section .gift-card {}
+.account-section .gift-card h3 {font-size: 18px; font-weight: 600; margin-bottom: 15px;}
+.account-section .gift-card h3 span {color: #767676;}
+.account-section .gift-card p {color: #767676; margin-bottom: 20px;}
+.account-section .gift-card p.card_code {margin-bottom: 5px; color: #484848;}
+.account-section .gift-card ul li {display: inline-block; margin-right: 15px; vertical-align: top; margin-bottom: 20px;}
+.account-section .gift-card ul li input {display: block; padding: 8px 10px; width: 300px; height: 40px; background-color: #fff; border: 1px solid #aaa; border-radius: 2px; color: #484848;}
+.account-section .transa_history {}
+.account-section .payout-methods {}
+.account-section .payout-methods p {margin-bottom: 15px;}

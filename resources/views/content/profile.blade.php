@@ -1,6 +1,9 @@
 @extends('layout/layout')
 @include('common/header_inner')
 @section('content')
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<link rel="stylesheet" type="text/css" href="{{Request::root()}}/assets/frontend/css/component.css" />
+
 <section class="main-content">
 	<div class="container">
 		<div class="row">
@@ -39,20 +42,32 @@
 												<h4 class="modal-title" style="text-align: center">Add Photo</h4>
 											</div>
 											<div class="modal-body">
-												<div class="pull-left" style="width: 50%;font-size: 15px;">
-													<input type="file" name="image" id="user_image">
+												<div class="row">
+													<form id="add_image" action="{{url('/profile')}}" method="post" enctype="multipart/form-data">
+														{{csrf_field()}}
+														<input type="hidden" name="action" value="add_image">
+														<input type="hidden" name="manage_users_id" value="{{Session::get('id')}}">
+														<div class="box">
+															<input type="file" name="image[]" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple style="height:0px;visibility:hidden;"/>
+															<label for="file-5">
+																<figure>
+																	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+																		<path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+																	</svg>
+																</figure>
+															<span>Choose a file&hellip;</span></label>
+														</div>
+													</form>
 												</div>
-												<div class="pull-right" style="width: 62%;font-size: 12px;">
-													<p>(Choose a jpg, png, gif or bmp file.)</p>
-													<p>	Your primary photo must be a clear photo of you—and only you. Your face should be clearly visible in your primary photo. Photos containing copyrighted, pornographic or offensive material, underage individuals, or photos where you are not clearly identifiable will be removed </p>
+												<div class="row">
+													<p class="note-align" style="text-align:center;">(Choose a jpg, png, gif or bmp file.)</p>
+													<p class="note-align">	Your primary photo must be a clear photo of you—and only you. Your face should be clearly visible in your primary photo. Photos containing copyrighted, pornographic or offensive material, underage individuals, or photos where you are not clearly identifiable will be removed </p>
 												</div>
 											</div>
 											<div class="clearfix"></div>
 											<div class="modal-footer" style="text-align: center">
 												<p> Note: Your primary photo may be cropped for consistency.</p>
 												<p> Photos that include nudity will not be approved.</p>
-												<button type="button"  class="btn2" id="image">Save</button>
-												<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
 											</div>
 										</div>
 									</div>
@@ -104,7 +119,7 @@
 							</span>
 						</div>
 						<div class="edit-big-btn">
-							<p>{{ $values->location }}</p>
+							<p>{{$values->state}}, {{$values->country}}</p>
 							<span>
 								<div class="dropdown">
 									<a class="btn" type="button" data-toggle="dropdown">Edit <i class="fa fa-edit" aria-hidden="true"></i></a>
@@ -356,6 +371,7 @@
 		</div>
 	</div>
 </section>
+<script src="{{Request::root()}}/assets/frontend/js/custom-file-input.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.bxslider').bxSlider({
@@ -470,7 +486,11 @@ $(document).ready(function(){
 
 		if(user_location =='')
 		{
-			alert("Please Fill All Fields");
+			swal(
+				'Oops...',
+				'Please Enter Postal Code or Zip Code to Continue',
+				'error'
+			)
 		}
 		else
 		{
@@ -496,7 +516,9 @@ $(document).ready(function(){
 						)
 
 						$('#myModal').modal('hide');
-						location.reload();
+						setTimeout(function(){
+		          location.reload();
+		        },2000)
 					}
 					else
 					{
@@ -507,7 +529,9 @@ $(document).ready(function(){
 							'success'
 						);
 						$('.close').click();
-						location.reload();
+						setTimeout(function(){
+		          location.reload();
+		        },2000)
 					}
 
 
@@ -574,5 +598,34 @@ $(function(){
 		dateFormat : 'yy-mm-dd'
 	});
 });
+
+$(document).on("change", "#file-5", function () {
+
+  $('#add_image').ajaxSubmit({
+    success: function (response) {
+			if(response == 0 )
+			{
+				swal(
+					'Oops...',
+					'Images not Uploaded..',
+					'error'
+				)
+				$('#myModal').modal('hide');
+				$("#file-5").val('');
+			}
+			else
+			{
+				swal(
+					'Success...',
+					'Image Uploaded.',
+					'success'
+				);
+				$('#myModal').modal('hide');
+				$("#file-5").val('');
+			}
+    }
+  });
+
+});
 </script>
-@stop
+@endsection

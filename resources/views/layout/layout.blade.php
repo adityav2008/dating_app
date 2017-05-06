@@ -72,8 +72,8 @@
 <script src="{{Request::root()}}/assets/frontend/js/hubslider.js" type="text/javascript"></script>
 <script src="{{Request::root()}}/assets/frontend/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="{{Request::root()}}/assets/frontend/js/easing.min.js" type="text/javascript"></script>
-<link href="https://cdn.jsdelivr.net/sweetalert2/6.5.6/sweetalert2.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdn.jsdelivr.net/sweetalert2/6.6.0/sweetalert2.min.js"></script>
+<link href="{{Request::root()}}/assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+<script src="{{Request::root()}}/assets/sweetalert2/sweetalert2.min.js"></script>
 <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 <style>
 	#google-language {position: fixed;bottom: 0;left: 0;display:inline-block;width:200px;}

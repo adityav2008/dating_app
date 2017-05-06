@@ -87,48 +87,42 @@ Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCa
 
 Route::any('/profile-detail', 'UserCtrl@doBlock');
 
-Route::group(array('before' => 'auth'), function() {
-
-    /*
-     | Sign Out (GET)
-     | --
-     */
-    Route::get('header_inner', 'UserCtrl@getSignOut');
-});
-
 //for payment.
 Route::get('payment-details','PaypalController@index');
 Route::post('payment-details','PaypalController@getCardInfo');
 Route::get('payment-gateway','PaypalController@splitPayTrip');
 //end payment.
+Route::get('/account-setting/{id?}', 'Front\AccountSettingController@index');
+Route::get('/account-setting/payment-methods/{id?}', 'Front\AccountSettingController@payment_method');
 
-//prashant kumar
+  Route::group(array('before' => 'auth'), function() {
+      Route::get('header_inner', 'UserCtrl@getSignOut');
+  });
+
+
+
+// Admin Routes
 Route::get('admin', 'Auth\LoginController@showLoginForm');
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin/login', 'Auth\LoginController@login');
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
 Route::get('admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('admin/register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
 Route::get('admin/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset');
-
-
 Route::group(['middleware' => ['auth']], function () {
-
   Route::group(['prefix' => 'admin'], function () {
-
     Route::get('dashboard',"DashboardCtrl@index");
-
     Route::group(['prefix' => 'user'], function () {
       Route::get('user-list',"UserCtrl@index");
       Route::get('add-new-user',"UserCtrl@changeUser");
       Route::post('add-new-user',"UserCtrl@doChangeUser");
+      Route::group(['prefix' => 'media'], function () {
+        Route::get('photos/{user_id?}',"UserCtrl@photos_list");
+        Route::post('action',"UserCtrl@user_action");
+      });
     });
 
     Route::group(['prefix' => 'manage-admin'], function () {
