@@ -22,7 +22,7 @@
 
 					<div class="dropdown pull-left">
 
-						<button class="btn2 btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Unread
+						<button class="btn2 btn-primary dropdown-toggle" id="toggle" type="button" data-toggle="dropdown">Unread
 
 						<span class="caret"></span></button>
 
@@ -69,37 +69,10 @@
 					
 
 					<div class="massage-icon">
-
-						<img src="{{Request::root()}}/assets/frontend/img/big-mail-icon.png" alt="" />
-
-						<h2>You don't have any messages that match this filter</h2>
-
+					
+						
 					</div>
-
-					<div class="members">
-
-						<h4>Boost Your Visibility</h4>
-
-						<p>Members receive an average of 3 times more views while they Boost.</p>
-
-						<div class="member-pic">
-
-							<img src="{{Request::root()}}/assets/frontend/img/member-pics.png" alt="" />
-
-							<div class="member-single-pic">
-
-								<img src="{{Request::root()}}/assets/frontend/img/member-single-pic.jpg" alt="" />
-
-							</div>
-
-						</div>
-
-						<h4>Want more views? Get 75 Boost!</h4>
-
-						<a href="#" class="btn2"><i class="fa fa-gg-circle" aria-hidden="true"></i> 150 Coins</a>
-
-					</div>
-
+					<div class="clearfix"></div>
 				</div>
 
 
@@ -139,43 +112,59 @@
 					</div>
 
 				</div>
-
+				
 
 				<div class="profile-main" id="unred" style="display: none;">
-					
+						<div class="heading-sec1">
+							<!-- Header section containing logo -->
+							  <header class="mdl-me">
+							      <div id="user-container">
+							        <div hidden id="user-pic"></div>
+							        <div hidden id="user-name"></div>
+							        <button hidden id="sign-out" class="btn2">
+							          Sign-out
+							        </button>
+							        <button hidden id="sign-in" class="btn2">
+							          Sign-in with Google
+							        </button>
+							      </div>
+							 <div class="clearfix"></div>
+							  </header>
+							
+						</div>
 
 					<div class="massage-icon">
 
-						<img src="{{Request::root()}}/assets/frontend/img/big-mail-icon.png" alt="" />
+						<div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+				        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+				          <div id="messages">
+				            <span id="message-filler"></span>
+				          </div>
+				          <form id="message-form" action="#">
+				            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				              <input class="mdl-textfield__input" type="text" id="message">
+				              <label class="mdl-textfield__label" for="message">Message...</label>
+				            </div>
+				            <button id="submit" disabled type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+				              Send
+				            </button>
+				          </form>
+				          <form id="image-form" action="#">
+				            <input id="mediaCapture" type="file" accept="image/*,capture=camera">
+				            <button id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+				              <i class="material-icons">image</i>
+				            </button>
+				          </form>
+				        </div>
+				      </div>
 
-						<h2>You don't have any messages that match this filter</h2>
+				      <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+				        <div class="mdl-snackbar__text"></div>
+				        <button class="mdl-snackbar__action" type="button"></button>
+				      </div>
 
 					</div>
-
-					<div class="members">
-
-						<h4>Unread</h4>
-
-						<p>Members receive an average of 3 times more views while they Boost.</p>
-
-						<div class="member-pic">
-
-							<img src="{{Request::root()}}/assets/frontend/img/member-pics.png" alt="" />
-
-							<div class="member-single-pic">
-
-								<img src="{{Request::root()}}/assets/frontend/img/member-single-pic.jpg" alt="" />
-
-							</div>
-
-						</div>
-
-						<h4>Want more views? Get 75 Boost!</h4>
-
-						<a href="#" class="btn2"><i class="fa fa-gg-circle" aria-hidden="true"></i> 150 Coins</a>
-
-					</div>
-
+					<div class="clearfix"></div>
 				</div>
 
 
@@ -289,35 +278,11 @@
 					
 					<div class="massage-icon">
 
-						<img src="{{Request::root()}}/assets/frontend/img/big-mail-icon.png" alt="" />
-
-						<h2>You don't have any messages that match this filter</h2>
+						hello
 
 					</div>
 
-					<div class="members">
-
-						<h4>winks</h4>
-
-						<p>Members receive an average of 3 times more views while they Boost.</p>
-
-						<div class="member-pic">
-
-							<img src="{{Request::root()}}/assets/frontend/img/member-pics.png" alt="" />
-
-							<div class="member-single-pic">
-
-								<img src="{{Request::root()}}/assets/frontend/img/member-single-pic.jpg" alt="" />
-
-							</div>
-
-						</div>
-
-						<h4>Want more views? Get 75 Boost!</h4>
-
-						<a href="#" class="btn2"><i class="fa fa-gg-circle" aria-hidden="true"></i> 150 Coins</a>
-
-					</div>
+					<div class="clearfix"></div>
 
 				</div>
 					<div class="profile-main" id="last" style="display: none;">
@@ -380,8 +345,17 @@ function myFunction() {
     var f = document.getElementById('win');
     var g = document.getElementById('last');
 
+    $('#toggle').html("All Incoming");
+    $('#send').css({"display": "none"})
+    $('#win').css({"display": "none"})
+    $('#conver').css({"display": "none"})
+    $('#unred').css({"display": "none"})
+    $('#last').css({"display": "none"})
+    $('#main').css({"display": "none"})
+
     if (a.style.display === 'none') {
         a.style.display = 'block';
+
     }
     else
     {
@@ -402,6 +376,14 @@ function myUnread() {
     var e = document.getElementById('send');
     var f = document.getElementById('win');
     var g = document.getElementById('last');
+
+    $('#toggle').html("Unread");
+     $('#send').css({"display": "none"})
+    $('#win').css({"display": "none"})
+    $('#conver').css({"display": "none"})
+    $('#inc').css({"display": "none"})
+    $('#last').css({"display": "none"})
+    $('#main').css({"display": "none"})
 
     if (c.style.display === 'none') 
     {
@@ -428,6 +410,14 @@ function myConversations() {
     var f = document.getElementById('win');
     var g = document.getElementById('last');
 
+    $('#toggle').html("Conversations");
+     $('#send').css({"display": "none"})
+    $('#win').css({"display": "none"})
+    $('#inc').css({"display": "none"})
+    $('#unred').css({"display": "none"})
+    $('#last').css({"display": "none"})
+    $('#main').css({"display": "none"})
+
     if (d.style.display === 'none') 
     {
         d.style.display = 'block';
@@ -453,6 +443,14 @@ function mySent() {
     var f = document.getElementById('win');
     var g = document.getElementById('last');
 
+    $('#toggle').html("Send");
+     $('#inc').css({"display": "none"})
+    $('#win').css({"display": "none"})
+    $('#conver').css({"display": "none"})
+    $('#unred').css({"display": "none"})
+    $('#last').css({"display": "none"})
+    $('#main').css({"display": "none"})
+
     if (e.style.display === 'none') 
     {
         e.style.display = 'block';
@@ -477,6 +475,14 @@ function myWinks(){
     var e = document.getElementById('send');
     var f = document.getElementById('win');
     var g = document.getElementById('last');
+
+    $('#toggle').html("Initial Winks");
+    $('#send').css({"display": "none"})
+    $('#win').css({"display": "none"})
+    $('#conver').css({"display": "none"})
+    $('#inc').css({"display": "none"})
+    $('#last').css({"display": "none"})
+    $('#main').css({"display": "none"})
 
     if (f.style.display === 'none') 
     {
@@ -504,6 +510,15 @@ function myInitials()
     var f = document.getElementById('win');
     var g = document.getElementById('last');
 
+    $('#toggle').html("Initials Message");
+    $('#send').css({"display": "none"})
+    $('#win').css({"display": "none"})
+    $('#conver').css({"display": "none"})
+    $('#inc').css({"display": "none"})
+    $('#unred').css({"display": "none"})
+    $('#main').css({"display": "none"})
+
+
     if (g.style.display === 'none') 
     {
         g.style.display = 'block';
@@ -520,7 +535,10 @@ function myInitials()
 }
 
 $(document).ready(function(){
-// send messege to others
+
+	
+
+	//send messege to others
 		$("#send").click(function(){
 			var user_idss = $('#hidden_id').val();
 			var send_by = "{{Session::get('id')}}";

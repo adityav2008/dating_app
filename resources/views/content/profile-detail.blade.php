@@ -191,7 +191,7 @@
 							</a>
 						@endif
 							
-							<a href="#" class="btn2"><i class="fa fa-gift" aria-hidden="true"></i> Send Gift</a>
+							<a class="btn2" data-toggle="modal" data-target="#myGift" ><i class="fa fa-gift" aria-hidden="true"></i> Send Gift</a>
 						</div>
 						<textarea placeholder="Send her a message..." id="msg"></textarea>
 
@@ -201,6 +201,118 @@
 						<a id="advance" data-toggle="collapse" data-target="#demo" class="btn2">See Full Profile <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 					</div>
 					<div class="clearfix"></div>
+				</div>
+
+				<!-- Trigger the modal with a button -->
+				
+
+				<!-- Modal -->
+				<div id="myGift" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title" style="text-align: center"><strong class="gifts-popup-v2__title">Make her smile with a gift!</strong></h4>
+				      </div>
+				      <div class="modal-body">
+				        <ul class="gift-holder gifts-list">
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container">
+				            	<img id="gift1" class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_125_128x128.png" alt="koala-heart-eyes">
+				            </div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2">
+				             <b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_124_128x128.png" alt="koala-gift-surprise"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_123_128x128.png" alt="koala-bikes"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_122_128x128.png" alt="koala-dinner"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_121_128x128.png" alt="koala-beer" ></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_120_128x128.png" alt="koala-coffee"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_119_128x128.png" alt="koala-flowers"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_100_128x128.png" alt="Teddy Bear"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>25 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_99_128x128.png" alt="Box of Chocolates"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>15 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_98_128x128.png" alt="Wine for Two"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>20 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_96_128x128.png" alt="Smooch"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>30 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_95_128x128.png" alt="Diamond Ring"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>100 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_94_128x128.png" alt="Candy Hearts"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_91_128x128.png" alt="Diamond Necklace"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>80 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_17_128x128.png" alt="Red Rose"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_16_128x128.png" alt="Bouquet"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>30 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_43_128x128.png" alt="Strawberry"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_42_128x128.png" alt="Mystery Gift Box"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>20 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_44_128x128.png" alt="Adoring Letter"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_19_128x128.png" alt="Bear with Heart"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>10 coins</div>
+				         </li>
+				         <li class="gifts-list__gift-wrapper">
+				            <div class="gift-v2-container--gifts-list gift-v2-container"><img class="gift-v2-img" src="https://zephyrzoosk-a.akamaihd.net/zephyr-browser124/images/gifts/gift_20_128x128.png" alt="Cocktail"></div>
+				            <div class="gifts-v2-cost" data-zat="profile-gift-popup-price--gifts-v2"><b></b>20 coins</div>
+				         </li>
+				      </ul>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+
+				  </div>
 				</div>
 				
 		    <div class="collapse" id="demo"> 
